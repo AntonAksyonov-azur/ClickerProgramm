@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using Clicker.com.arazect.clicker.data;
-using Clicker.com.arazect.data;
 
 namespace Clicker.com.arazect.clicker.forms
 {
@@ -64,12 +63,12 @@ namespace Clicker.com.arazect.clicker.forms
 
         private void nudRepeatInterval_ValueChanged(object sender, EventArgs e)
         {
-            timer.Interval = (int) nudRepeatInterval.Value;
+            timer.Interval = (int) nudTimertInterval.Value;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            _clicksLeft = (int) nudRepeatTimes.Value;
+            _clicksLeft = (int) nudRepeatCount.Value;
             timer.Enabled = true;
         }
 
@@ -86,8 +85,8 @@ namespace Clicker.com.arazect.clicker.forms
             ClickImitation.PerformClick((int) nudX.Value, (int) nudY.Value);
             lCliksPerformed.Text =
                 String.Format("Performed: {0}/{1}",
-                    nudRepeatTimes.Value - _clicksLeft,
-                    nudRepeatTimes.Value);
+                    nudRepeatCount.Value - _clicksLeft,
+                    nudRepeatCount.Value);
         }
 
         private void ApplyConfig()
@@ -95,6 +94,9 @@ namespace Clicker.com.arazect.clicker.forms
             Location = ThisProgrammConfig.WindowPoint;
             nudX.Maximum = ThisProgrammConfig.NudControlsLimit.X;
             nudY.Maximum = ThisProgrammConfig.NudControlsLimit.Y;
+
+            nudTimertInterval.Value = ThisProgrammConfig.TimerInterval;
+            nudRepeatCount.Value = ThisProgrammConfig.RepeatCount;
         }
 
         #region List and Data Binding
@@ -103,37 +105,97 @@ namespace Clicker.com.arazect.clicker.forms
         {
             lbCoordinates.DataSource = null;
             lbCoordinates.DataSource = ThisProgrammConfig.ClickPoints;
+            lbCoordinates.SelectedIndex = ThisProgrammConfig.ClickPoints.Count - 1;
         }
-
 
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (var d = new AddEditForm(default(ClickPoint)))
+            using (var d = new AddEditForm(
+                new ClickPoint {X = (int) nudX.Value, Y = (int) nudY.Value}))
             {
                 if (d.ShowDialog() == DialogResult.OK)
                 {
-                   ThisProgrammConfig.ClickPoints.Add(new ClickPoint()
-                   {
-                       
-                   });
+                    ThisProgrammConfig.ClickPoints.Add(
+                        new ClickPoint
+                        {
+                            Name = d.Name,
+                            X = d.X,
+                            Y = d.Y
+                        });
+
+                    RefreshListBoxDataBinding();
                 }
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (lbCoordinates.SelectedIndex != -1)
+            {
+                var selectedItem = (ClickPoint) lbCoordinates.SelectedItem;
+                using (var d = new AddEditForm(selectedItem, true))
+                {
+                    var id = ThisProgrammConfig.ClickPoints
+                        .FindIndex(a => a == selectedItem);
 
+                    if (d.ShowDialog() == DialogResult.OK)
+                    {
+                        ThisProgrammConfig.ClickPoints[id] =
+                            new ClickPoint
+                            {
+                                Name = d.Name,
+                                X = d.X,
+                                Y = d.Y
+                            };
+                    }
+
+                    RefreshListBoxDataBinding();
+                    lbCoordinates.SelectedIndex = id;
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "You must select item in list first!",
+                    "Error in selection",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            if (lbCoordinates.SelectedIndex != -1)
+            {
+                ThisProgrammConfig.ClickPoints.Remove(
+                    (ClickPoint) lbCoordinates.SelectedItem);
+                RefreshListBoxDataBinding();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "You must select item in list first!",
+                    "Error in selection",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
 
+        private void lbCoordinates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbCoordinates.SelectedIndex != -1)
+            {
+                var selectedItem = (ClickPoint) lbCoordinates.SelectedItem;
+                nudX.Value = selectedItem.X;
+                nudY.Value = selectedItem.Y;
+            }
         }
 
         #endregion
 
         #region Form
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             ThisProgrammConfig = ConfigurationLoader.LoadConfiguration<ProgrammConfig>("config.xml");
@@ -148,7 +210,9 @@ namespace Clicker.com.arazect.clicker.forms
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ThisProgrammConfig.WindowPoint = this.Location;
+            ThisProgrammConfig.WindowPoint = Location;
+            ThisProgrammConfig.TimerInterval = (int) nudTimertInterval.Value;
+            ThisProgrammConfig.RepeatCount = (int) nudRepeatCount.Value;
 
             ConfigurationLoader.SaveConfiguration(ThisProgrammConfig, "config.xml");
         }

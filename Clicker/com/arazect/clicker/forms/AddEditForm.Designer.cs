@@ -161,7 +161,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEditForm";
+            this.TopMost = true;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudX)).EndInit();

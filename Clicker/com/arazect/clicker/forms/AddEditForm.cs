@@ -6,18 +6,23 @@ namespace Clicker.com.arazect.clicker.forms
 {
     public partial class AddEditForm : Form
     {
-        public AddEditForm(ClickPoint item)
+        public AddEditForm(ClickPoint item, bool isEditMode = false)
         {
             InitializeComponent();
 
             ApplyConfig();
 
-            if (item != default(ClickPoint))
+            if (isEditMode)
             {
                 tbName.Text = item.Name;
-                nudX.Value = item.X;
-                nudY.Value = item.Y;
             }
+            else
+            {
+                tbName.Text = String.Format(
+                    "Point {0}-{1}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString());
+            }
+            nudX.Value = item.X;
+            nudY.Value = item.Y;
         }
 
         public new String Name;
@@ -26,8 +31,8 @@ namespace Clicker.com.arazect.clicker.forms
 
         private void ApplyConfig()
         {
-            nudX.Maximum = FormMain.ThisProrammConfig.NudControlsLimit.X;
-            nudY.Minimum = FormMain.ThisProrammConfig.NudControlsLimit.Y;
+            nudX.Maximum = FormMain.ThisProgrammConfig.NudControlsLimit.X;
+            nudY.Maximum = FormMain.ThisProgrammConfig.NudControlsLimit.Y;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

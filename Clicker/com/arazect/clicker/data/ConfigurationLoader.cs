@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Clicker.com.arazect.data
+namespace Clicker.com.arazect.clicker.data
 {
     public class ConfigurationLoader
     {
@@ -38,7 +38,7 @@ namespace Clicker.com.arazect.data
             try
             {
                 var serializer = new XmlSerializer(typeof (T));
-                TextWriter writer = new StreamWriter(savePath);
+                TextWriter writer = new StreamWriter(savePath, false);
                 serializer.Serialize(writer, configurationObject);
                 writer.Close();
             }

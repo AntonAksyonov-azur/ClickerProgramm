@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.btnStart = new System.Windows.Forms.Button();
-            this.nudRepeatTimes = new System.Windows.Forms.NumericUpDown();
+            this.nudRepeatCount = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.nudX = new System.Windows.Forms.NumericUpDown();
             this.nudY = new System.Windows.Forms.NumericUpDown();
@@ -40,7 +40,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.nudRepeatInterval = new System.Windows.Forms.NumericUpDown();
+            this.nudTimertInterval = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.lCliksPerformed = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,12 +49,12 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatTimes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudY)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimertInterval)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,23 +72,23 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // nudRepeatTimes
+            // nudRepeatCount
             // 
-            this.nudRepeatTimes.Location = new System.Drawing.Point(9, 32);
-            this.nudRepeatTimes.Maximum = new decimal(new int[] {
+            this.nudRepeatCount.Location = new System.Drawing.Point(9, 32);
+            this.nudRepeatCount.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.nudRepeatTimes.Minimum = new decimal(new int[] {
+            this.nudRepeatCount.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nudRepeatTimes.Name = "nudRepeatTimes";
-            this.nudRepeatTimes.Size = new System.Drawing.Size(70, 20);
-            this.nudRepeatTimes.TabIndex = 1;
-            this.nudRepeatTimes.Value = new decimal(new int[] {
+            this.nudRepeatCount.Name = "nudRepeatCount";
+            this.nudRepeatCount.Size = new System.Drawing.Size(70, 20);
+            this.nudRepeatCount.TabIndex = 1;
+            this.nudRepeatCount.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -180,9 +180,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.nudRepeatInterval);
+            this.groupBox2.Controls.Add(this.nudTimertInterval);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.nudRepeatTimes);
+            this.groupBox2.Controls.Add(this.nudRepeatCount);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Location = new System.Drawing.Point(202, 79);
             this.groupBox2.Name = "groupBox2";
@@ -191,28 +191,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Repeat";
             // 
-            // nudRepeatInterval
+            // nudTimertInterval
             // 
-            this.nudRepeatInterval.Location = new System.Drawing.Point(106, 32);
-            this.nudRepeatInterval.Maximum = new decimal(new int[] {
+            this.nudTimertInterval.Location = new System.Drawing.Point(106, 32);
+            this.nudTimertInterval.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
-            this.nudRepeatInterval.Minimum = new decimal(new int[] {
+            this.nudTimertInterval.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nudRepeatInterval.Name = "nudRepeatInterval";
-            this.nudRepeatInterval.Size = new System.Drawing.Size(70, 20);
-            this.nudRepeatInterval.TabIndex = 4;
-            this.nudRepeatInterval.Value = new decimal(new int[] {
+            this.nudTimertInterval.Name = "nudTimertInterval";
+            this.nudTimertInterval.Size = new System.Drawing.Size(70, 20);
+            this.nudTimertInterval.TabIndex = 4;
+            this.nudTimertInterval.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.nudRepeatInterval.ValueChanged += new System.EventHandler(this.nudRepeatInterval_ValueChanged);
+            this.nudTimertInterval.ValueChanged += new System.EventHandler(this.nudRepeatInterval_ValueChanged);
             // 
             // label5
             // 
@@ -258,6 +258,7 @@
             this.lbCoordinates.Name = "lbCoordinates";
             this.lbCoordinates.Size = new System.Drawing.Size(182, 108);
             this.lbCoordinates.TabIndex = 0;
+            this.lbCoordinates.SelectedIndexChanged += new System.EventHandler(this.lbCoordinates_SelectedIndexChanged);
             // 
             // btnAdd
             // 
@@ -310,14 +311,14 @@
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatTimes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudY)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRepeatInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimertInterval)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -328,7 +329,7 @@
 
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.NumericUpDown nudRepeatTimes;
+        private System.Windows.Forms.NumericUpDown nudRepeatCount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nudX;
         private System.Windows.Forms.NumericUpDown nudY;
@@ -337,7 +338,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.NumericUpDown nudRepeatInterval;
+        private System.Windows.Forms.NumericUpDown nudTimertInterval;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lCliksPerformed;
         private System.Windows.Forms.Label label4;
