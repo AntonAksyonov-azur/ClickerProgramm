@@ -1,9 +1,0 @@
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\ResolveAssemblyReference.cache
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\Clicker.FormMain.resources
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\Clicker.Properties.Resources.resources
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\GenerateResource.read.1.tlog
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\GenerateResource.write.1.tlog
-D:\Work\C#\Clicker\Clicker\bin\Debug\Clicker.exe
-D:\Work\C#\Clicker\Clicker\bin\Debug\Clicker.pdb
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\Clicker.exe
-D:\Work\C#\Clicker\Clicker\obj\x86\Debug\Clicker.pdb
