@@ -47,15 +47,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="com\arazect\clicker\ClickImitation.cs" />
-    <Compile Include="FormMain.cs">
+    <Compile Include="com\arazect\clicker\data\ClickPoint.cs" />
+    <Compile Include="com\arazect\clicker\data\ConfigurationLoader.cs" />
+    <Compile Include="com\arazect\clicker\data\ProgrammConfig.cs" />
+    <Compile Include="com\arazect\clicker\forms\AddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMain.Designer.cs">
+    <Compile Include="com\arazect\clicker\forms\AddEditForm.Designer.cs">
+      <DependentUpon>AddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\arazect\clicker\forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="com\arazect\clicker\forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormMain.resx">
+    <EmbeddedResource Include="com\arazect\clicker\forms\AddEditForm.resx">
+      <DependentUpon>AddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="com\arazect\clicker\forms\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
