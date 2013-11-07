@@ -16,7 +16,7 @@ namespace Clicker.com.arazect.clicker.data
 
         public static bool operator ==(ClickPoint a, ClickPoint b)
         {
-            return a.X == b.Y && a.Y == b.Y && a.Name == b.Name;
+            return a.X == b.X && a.Y == b.Y && a.Name == b.Name;
         }
 
         public static bool operator !=(ClickPoint a, ClickPoint b)
