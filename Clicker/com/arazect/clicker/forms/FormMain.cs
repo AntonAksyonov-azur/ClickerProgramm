@@ -9,7 +9,7 @@ namespace Clicker.com.arazect.clicker.forms
 {
     public partial class FormMain : Form
     {
-        internal static ProgrammConfig ThisProrammConfig;
+        internal static ProgrammConfig ThisProgrammConfig;
 
         private int _clicksLeft = 0;
         private Point _prevCursorPosition;
@@ -92,9 +92,9 @@ namespace Clicker.com.arazect.clicker.forms
 
         private void ApplyConfig()
         {
-            Location = ThisProrammConfig.WindowPoint;
-            nudX.Maximum = ThisProrammConfig.NudControlsLimit.X;
-            nudY.Maximum = ThisProrammConfig.NudControlsLimit.Y;
+            Location = ThisProgrammConfig.WindowPoint;
+            nudX.Maximum = ThisProgrammConfig.NudControlsLimit.X;
+            nudY.Maximum = ThisProgrammConfig.NudControlsLimit.Y;
         }
 
         #region List and Data Binding
@@ -102,7 +102,7 @@ namespace Clicker.com.arazect.clicker.forms
         private void RefreshListBoxDataBinding()
         {
             lbCoordinates.DataSource = null;
-            lbCoordinates.DataSource = ThisProrammConfig.ClickPoints;
+            lbCoordinates.DataSource = ThisProgrammConfig.ClickPoints;
         }
 
 
@@ -113,7 +113,7 @@ namespace Clicker.com.arazect.clicker.forms
             {
                 if (d.ShowDialog() == DialogResult.OK)
                 {
-                   ThisProrammConfig.ClickPoints.Add(new ClickPoint()
+                   ThisProgrammConfig.ClickPoints.Add(new ClickPoint()
                    {
                        
                    });
@@ -136,7 +136,7 @@ namespace Clicker.com.arazect.clicker.forms
         #region Form
         private void FormMain_Load(object sender, EventArgs e)
         {
-            ThisProrammConfig = ConfigurationLoader.LoadConfiguration<ProgrammConfig>("config.xml");
+            ThisProgrammConfig = ConfigurationLoader.LoadConfiguration<ProgrammConfig>("config.xml");
             ApplyConfig();
             RefreshListBoxDataBinding();
 
@@ -148,9 +148,9 @@ namespace Clicker.com.arazect.clicker.forms
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ThisProrammConfig.WindowPoint = this.Location;
+            ThisProgrammConfig.WindowPoint = this.Location;
 
-            ConfigurationLoader.SaveConfiguration(ThisProrammConfig, "config.xml");
+            ConfigurationLoader.SaveConfiguration(ThisProgrammConfig, "config.xml");
         }
     }
 }
