@@ -39,9 +39,12 @@ namespace Clicker
 
         private void CheckWindowStateAndStopTimer(object state)
         {
-            if (WindowState == FormWindowState.Minimized)
+            for (;;)
             {
-                timer.Enabled = false;
+                if (WindowState == FormWindowState.Minimized)
+                {
+                    timer.Enabled = false;
+                }
             }
         }
 
