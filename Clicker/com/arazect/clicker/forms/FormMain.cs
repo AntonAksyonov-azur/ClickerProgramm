@@ -54,6 +54,7 @@ namespace Clicker.com.arazect.clicker.forms
                 {
                     timer.Enabled = false;
                 }
+                Thread.Sleep(25);
             }
         }
 
